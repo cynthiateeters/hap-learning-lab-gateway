@@ -112,8 +112,13 @@ const typeLabel = isProject ? 'Practice Project' : `${stationCount} stations`;
   }
 
   .lab-card-coming-soon {
-    opacity: 0.7;
     cursor: default;
+  }
+
+  .lab-card-coming-soon .lab-card-header h3,
+  .lab-card-coming-soon .lab-description,
+  .lab-card-coming-soon .lab-meta {
+    opacity: 0.7;
   }
 
   .lab-card-coming-soon:hover {
