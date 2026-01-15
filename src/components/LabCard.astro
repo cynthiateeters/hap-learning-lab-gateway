@@ -30,7 +30,7 @@ const isLive = status === 'live' && url;
 ---
 
 {isLive ? (
-  <a href={url} class="insight-card lab-card lab-card-link">
+  <div class="insight-card lab-card">
     <div class="lab-card-header">
       <h3><span class="insight-icon">{icon}</span> {title}</h3>
     </div>
@@ -39,8 +39,8 @@ const isLive = status === 'live' && url;
       <span class="lab-meta-item">{stationCount} stations</span>
       <span class="lab-meta-item">{difficulty}</span>
     </div>
-    <p class="station-cta">→ Visit Lab</p>
-  </a>
+    <a href={url} class="lab-cta-link">→ Visit Lab</a>
+  </div>
 ) : (
   <div class="insight-card lab-card lab-card-coming-soon">
     <div class="lab-card-header">
@@ -111,7 +111,16 @@ const isLive = status === 'live' && url;
     border-color: transparent;
   }
 
-  .lab-card-link {
-    cursor: pointer;
+  .lab-cta-link {
+    display: inline-block;
+    color: hsl(32, 76%, 37%);
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: auto;
+  }
+
+  .lab-cta-link:hover {
+    text-decoration: underline;
+    color: hsl(32, 76%, 27%);
   }
 </style>
