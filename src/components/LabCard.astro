@@ -1,0 +1,117 @@
+---
+/**
+ * LabCard.astro - Card component for linking to individual HAP Learning Labs
+ *
+ * Displays a clickable card with lab information, status badge, and metadata.
+ * Live labs link externally; coming-soon labs show a placeholder.
+ */
+
+interface Props {
+  icon: string;
+  title: string;
+  description: string;
+  url?: string;
+  stationCount?: number;
+  difficulty?: 'Beginner' | 'Intermediate' | 'Advanced';
+  status?: 'live' | 'coming-soon';
+}
+
+const {
+  icon,
+  title,
+  description,
+  url,
+  stationCount = 6,
+  difficulty = 'Beginner',
+  status = 'live'
+} = Astro.props;
+
+const isLive = status === 'live' && url;
+---
+
+{isLive ? (
+  <a href={url} class="insight-card lab-card lab-card-link">
+    <div class="lab-card-header">
+      <h3><span class="insight-icon">{icon}</span> {title}</h3>
+    </div>
+    <p class="lab-description">{description}</p>
+    <div class="lab-meta">
+      <span class="lab-meta-item">{stationCount} stations</span>
+      <span class="lab-meta-item">{difficulty}</span>
+    </div>
+    <p class="station-cta">→ Visit Lab</p>
+  </a>
+) : (
+  <div class="insight-card lab-card lab-card-coming-soon">
+    <div class="lab-card-header">
+      <h3><span class="insight-icon">{icon}</span> {title}</h3>
+      <span class="lab-badge">Coming Soon</span>
+    </div>
+    <p class="lab-description">{description}</p>
+    <div class="lab-meta">
+      <span class="lab-meta-item">{stationCount} stations</span>
+      <span class="lab-meta-item">{difficulty}</span>
+    </div>
+  </div>
+)}
+
+<style>
+  .lab-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .lab-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .lab-card-header h3 {
+    margin: 0;
+  }
+
+  .lab-badge {
+    background: hsl(32, 76%, 37%);
+    color: hsl(32, 100%, 98%);
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .lab-description {
+    flex: 1;
+    margin: 0;
+  }
+
+  .lab-meta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .lab-meta-item {
+    font-size: 0.875rem;
+    color: hsl(24, 18%, 53%);
+  }
+
+  .lab-card-coming-soon {
+    opacity: 0.7;
+    cursor: default;
+  }
+
+  .lab-card-coming-soon:hover {
+    transform: none;
+    border-color: transparent;
+  }
+
+  .lab-card-link {
+    cursor: pointer;
+  }
+</style>
