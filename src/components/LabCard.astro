@@ -1,9 +1,9 @@
 ---
 /**
- * LabCard.astro - Card component for linking to individual HAP Learning Labs
+ * LabCard.astro - Card component for linking to HAP Learning Labs and Projects
  *
- * Displays a clickable card with lab information, status badge, and metadata.
- * Live labs link externally; coming-soon labs show a placeholder.
+ * Displays a card with lab/project information, status badge, and metadata.
+ * Supports both Learning Labs (with stations) and Practice Projects.
  */
 
 interface Props {
@@ -14,6 +14,7 @@ interface Props {
   stationCount?: number;
   difficulty?: 'Beginner' | 'Intermediate' | 'Advanced';
   status?: 'live' | 'coming-soon';
+  cardType?: 'lab' | 'project';
 }
 
 const {
@@ -23,23 +24,28 @@ const {
   url,
   stationCount = 6,
   difficulty = 'Beginner',
-  status = 'live'
+  status = 'live',
+  cardType = 'lab'
 } = Astro.props;
 
 const isLive = status === 'live' && url;
+const isProject = cardType === 'project';
+const ctaText = isProject ? '→ View Project' : '→ Visit Lab';
+const typeLabel = isProject ? 'Practice Project' : `${stationCount} stations`;
 ---
 
 {isLive ? (
   <div class="insight-card lab-card">
     <div class="lab-card-header">
       <h3><span class="insight-icon">{icon}</span> {title}</h3>
+      {isProject && <span class="lab-badge lab-badge-project">Project</span>}
     </div>
     <p class="lab-description">{description}</p>
     <div class="lab-meta">
-      <span class="lab-meta-item">{stationCount} stations</span>
+      <span class="lab-meta-item">{typeLabel}</span>
       <span class="lab-meta-item">{difficulty}</span>
     </div>
-    <a href={url} class="lab-cta-link">→ Visit Lab</a>
+    <a href={url} class="lab-cta-link">{ctaText}</a>
   </div>
 ) : (
   <div class="insight-card lab-card lab-card-coming-soon">
@@ -49,7 +55,7 @@ const isLive = status === 'live' && url;
     </div>
     <p class="lab-description">{description}</p>
     <div class="lab-meta">
-      <span class="lab-meta-item">{stationCount} stations</span>
+      <span class="lab-meta-item">{typeLabel}</span>
       <span class="lab-meta-item">{difficulty}</span>
     </div>
   </div>
@@ -83,6 +89,10 @@ const isLive = status === 'live' && url;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     white-space: nowrap;
+  }
+
+  .lab-badge-project {
+    background: hsl(168, 28%, 44%);
   }
 
   .lab-description {
