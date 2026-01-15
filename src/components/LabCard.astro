@@ -17,16 +17,7 @@ interface Props {
   cardType?: 'lab' | 'project';
 }
 
-const {
-  icon,
-  title,
-  description,
-  url,
-  stationCount = 6,
-  difficulty = 'Beginner',
-  status = 'live',
-  cardType = 'lab'
-} = Astro.props;
+const { icon, title, description, url, stationCount = 6, difficulty = 'Beginner', status = 'live', cardType = 'lab' } = Astro.props;
 
 const isLive = status === 'live' && url;
 const isProject = cardType === 'project';
@@ -34,32 +25,40 @@ const ctaText = isProject ? '→ View Project' : '→ Visit Lab';
 const typeLabel = isProject ? 'Practice Project' : `${stationCount} stations`;
 ---
 
-{isLive ? (
-  <div class="insight-card lab-card">
-    <div class="lab-card-header">
-      <h3><span class="insight-icon">{icon}</span> {title}</h3>
-      {isProject && <span class="lab-badge lab-badge-project">Project</span>}
+{
+  isLive ? (
+    <div class='insight-card lab-card'>
+      <div class='lab-card-header'>
+        <h3>
+          <span class='insight-icon'>{icon}</span> {title}
+        </h3>
+        {isProject && <span class='lab-badge lab-badge-project'>Project</span>}
+      </div>
+      <p class='lab-description'>{description}</p>
+      <div class='lab-meta'>
+        <span class='lab-meta-item'>{typeLabel}</span>
+        <span class='lab-meta-item'>{difficulty}</span>
+      </div>
+      <a href={url} class='lab-cta-link'>
+        {ctaText}
+      </a>
     </div>
-    <p class="lab-description">{description}</p>
-    <div class="lab-meta">
-      <span class="lab-meta-item">{typeLabel}</span>
-      <span class="lab-meta-item">{difficulty}</span>
+  ) : (
+    <div class='insight-card lab-card lab-card-coming-soon'>
+      <div class='lab-card-header'>
+        <h3>
+          <span class='insight-icon'>{icon}</span> {title}
+        </h3>
+        <span class='lab-badge'>Coming Soon</span>
+      </div>
+      <p class='lab-description'>{description}</p>
+      <div class='lab-meta'>
+        <span class='lab-meta-item'>{typeLabel}</span>
+        <span class='lab-meta-item'>{difficulty}</span>
+      </div>
     </div>
-    <a href={url} class="lab-cta-link">{ctaText}</a>
-  </div>
-) : (
-  <div class="insight-card lab-card lab-card-coming-soon">
-    <div class="lab-card-header">
-      <h3><span class="insight-icon">{icon}</span> {title}</h3>
-      <span class="lab-badge">Coming Soon</span>
-    </div>
-    <p class="lab-description">{description}</p>
-    <div class="lab-meta">
-      <span class="lab-meta-item">{typeLabel}</span>
-      <span class="lab-meta-item">{difficulty}</span>
-    </div>
-  </div>
-)}
+  )
+}
 
 <style>
   .lab-card {
@@ -89,6 +88,7 @@ const typeLabel = isProject ? 'Practice Project' : `${stationCount} stations`;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     white-space: nowrap;
+    opacity: 0.9;
   }
 
   .lab-badge-project {
