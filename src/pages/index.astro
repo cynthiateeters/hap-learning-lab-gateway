@@ -3,17 +3,25 @@
  * HAP Learning Lab Gateway - Landing Page
  *
  * Central entry point to all HAP Learning Labs.
- * Displays available labs and provides navigation to each standalone lab site.
+ * Shows all courses with their labs, projects, and media.
  */
 
 import GatewayLayout from '../layouts/GatewayLayout.astro';
 import LabCard from '../components/LabCard.astro';
+import { courses, getLabsByCourse, getAllMediaSorted } from '../data/content.js';
 
 const introContent = `
     <p><strong>Welcome to HAP's Learning Lab Gateway!</strong> I'm HAP, Prof. Teeters' apprentice, and this is where all my learning adventures begin.</p>
     <p class="mt-1">Each Learning Lab below is a complete journey—pick one that interests you, and I'll guide you through it step by step. Every lab has 6 stations where I share what I learned, the mistakes I made, and the breakthroughs that helped me understand.</p>
-    <p class="mt-1">Prof. Teeters always says the best way to learn is by doing. So let's get started! 🟠</p>
+    <p class="mt-1">Prof. Teeters always says the best way to learn is by doing. So let's get started!</p>
 `;
+
+// Get labs for each course
+const javascriptLabs = getLabsByCourse('javascript');
+const webdev2Labs = getLabsByCourse('webdev2');
+
+// Get all media sorted by date (newest first)
+const allMedia = getAllMediaSorted();
 ---
 
 <!--
@@ -33,11 +41,11 @@ HyBit A. ProtoBot (HAP) character and the apprentice learning methodology are pr
     introImage="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_240,c_limit/v1759497938/HAP-learner_dvehmt.jpg"
     introImageAlt="HAP ready to learn"
     footerReminder="Every lab is a new adventure. Pick one and start exploring!"
+    showCourseNav={true}
 >
 
     <!-- ============================================================
          About the Gateway Section
-         4 cards explaining how the Gateway works
          ============================================================ -->
     <section class="content-section">
         <div class="topic-section">
@@ -45,25 +53,25 @@ HyBit A. ProtoBot (HAP) character and the apprentice learning methodology are pr
 
             <div class="analysis-grid">
                 <div class="analysis-point">
-                    <h3>🎯 How it works</h3>
+                    <h3>How it works</h3>
                     <p>Each Learning Lab is self-contained with 6 stations. You can start with any lab that interests you—there's no required order.</p>
                     <p class="mt-1">Just click a lab card below, and I'll walk you through everything.</p>
                 </div>
 
                 <div class="analysis-point">
-                    <h3>🔗 Connected learning</h3>
+                    <h3>Connected learning</h3>
                     <p>While each lab stands alone, they all build on shared thinking skills. The more labs you explore, the more connections you'll discover.</p>
                     <p class="mt-1">Prof. Teeters designed them to reinforce each other.</p>
                 </div>
 
                 <div class="analysis-point">
-                    <h3>🎨 My philosophy</h3>
+                    <h3>My philosophy</h3>
                     <p>Mistakes are data, not failures. In every lab, I share the real struggles I faced—the bugs, the confusion, the moments when things finally clicked.</p>
                     <p class="mt-1">We learn better when we see that everyone struggles.</p>
                 </div>
 
                 <div class="analysis-point">
-                    <h3>🚀 Always growing</h3>
+                    <h3>Always growing</h3>
                     <p>New labs are added as Prof. Teeters and I explore new topics together. Check back to see what's new!</p>
                     <p class="mt-1">Coming soon cards show what's in development.</p>
                 </div>
@@ -72,52 +80,41 @@ HyBit A. ProtoBot (HAP) character and the apprentice learning methodology are pr
     </section>
 
     <!-- ============================================================
-         Learning Labs Grid
-         Cards linking to each lab (live or coming soon)
+         JavaScript Learning Labs
          ============================================================ -->
     <div class="content-container">
         <section class="content-section">
-            <h2 class="section-heading-centered">Learning Labs</h2>
-            <nav aria-label="Available learning labs">
+            <h2 class="section-heading-centered">{courses.javascript.name}</h2>
+            <nav aria-label="JavaScript learning labs">
                 <div class="overview-grid">
-
-                    <LabCard
-                        icon="🧠"
-                        title="Computational Thinking"
-                        description="Learn to think before you code. I'll take you through the Secret Number Game, where I discovered that describing behavior, writing pseudocode, and tracing logic are more important than memorizing syntax."
-                        url="https://hap-computational-thinking.netlify.app/"
-                        stationCount={6}
-                        difficulty="Beginner"
-                        status="live"
-                    />
-
-                    <LabCard
-                        icon="✨"
-                        title="Magic Quotes"
-                        description="A collaborative web application for displaying random quotes—and my first real contribution project! Students learn Git workflows, structured data, and modern web development by adding their own quotes to a live site."
-                        url="https://magic-quotes.netlify.app"
-                        difficulty="Beginner"
-                        status="live"
-                        cardType="project"
-                    />
-
-                    <LabCard
-                        icon="📜"
-                        title="JavaScript Basics"
-                        description="Once you can think computationally, it's time to write real code! I'll share how I learned JavaScript fundamentals—variables, functions, loops, and more—while building projects that actually do something."
-                        stationCount={6}
-                        difficulty="Beginner"
-                        status="coming-soon"
-                    />
-
+                    {javascriptLabs.map((lab) => (
+                        <LabCard {...lab} />
+                    ))}
                 </div>
             </nav>
         </section>
     </div>
 
     <!-- ============================================================
-         Listen & Watch Section
-         Podcasts and videos for supplementary learning
+         Web Dev 2 Learning Labs
+         ============================================================ -->
+    {webdev2Labs.length > 0 && (
+        <div class="content-container">
+            <section class="content-section">
+                <h2 class="section-heading-centered">{courses.webdev2.name}</h2>
+                <nav aria-label="Web Dev 2 learning labs">
+                    <div class="overview-grid">
+                        {webdev2Labs.map((lab) => (
+                            <LabCard {...lab} />
+                        ))}
+                    </div>
+                </nav>
+            </section>
+        </div>
+    )}
+
+    <!-- ============================================================
+         Listen & Watch Section (all media, sorted by date)
          ============================================================ -->
     <div class="content-container">
         <section class="content-section">
@@ -125,36 +122,9 @@ HyBit A. ProtoBot (HAP) character and the apprentice learning methodology are pr
             <p class="section-intro">Explore HAP's learning journey through podcasts and videos.</p>
             <nav aria-label="Podcasts and videos">
                 <div class="overview-grid">
-
-                    <LabCard
-                        icon="🎧"
-                        title="Computational Thinking"
-                        description="HAP's Learning Lab teaches computational thinking as a foundational mindset. Learn the four pillars—decomposition, pattern recognition, abstraction, and algorithmic thinking—using the Secret Number Game."
-                        url="https://open.spotify.com/episode/0XHODbHBn04SVjfDN0UzEw?si=y1XmZ6RASk2kSwXQJgQgjQ"
-                        duration="12 min"
-                        showName="Deep Dive: The HAP Blog Edition"
-                        cardType="podcast"
-                        status="live"
-                    />
-
-                    <LabCard
-                        icon="🦆"
-                        title="HAP Rubber Ducky Story"
-                        description="Discover the power of rubber duck debugging! HAP shares how talking through problems out loud—even to a rubber duck—helps untangle complex coding challenges."
-                        url="https://www.youtube.com/watch?v=Re4suES6sGA"
-                        cardType="video"
-                        status="live"
-                    />
-
-                    <LabCard
-                        icon="📜"
-                        title="HAP Invites You to JavaScript"
-                        description="Join HAP on the beginning of a JavaScript journey. This introduction sets the stage for learning programming fundamentals with curiosity and patience."
-                        url="https://www.youtube.com/watch?v=cqyNnAmxTPg"
-                        cardType="video"
-                        status="live"
-                    />
-
+                    {allMedia.map((item) => (
+                        <LabCard {...item} />
+                    ))}
                 </div>
             </nav>
         </section>
@@ -172,7 +142,7 @@ HyBit A. ProtoBot (HAP) character and the apprentice learning methodology are pr
                     alt="HAP ready to learn"
                     width="150" height="150" class="hap-note-image" decoding="async" loading="lazy">
                 <div class="hap-note-content">
-                    <h3>🟠 What I promise you:</h3>
+                    <h3>What I promise you:</h3>
                     <p>I won't pretend I know everything. I'm still learning too. What I can promise is that I'll share exactly what helped me—the mistakes, the breakthroughs, the moments when things finally clicked.</p>
                     <p class="mt-1">Prof. Teeters always says: "Understanding how to learn matters more than memorizing what to type." These labs are my learning journey, and I'm excited to share them with you.</p>
                     <p class="mt-1">Pick a lab, dive in, and let's figure this out together!</p>

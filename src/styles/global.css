@@ -5418,6 +5418,63 @@ pre {
   }
 }
 
+/* ============================================================
+   Course Navigation
+   Navigation bar for switching between course-specific pages
+   ============================================================ */
+
+.course-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--peach-background);
+  border-bottom: 1px solid var(--soft-orange);
+}
+
+.course-nav a {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--medium-brown);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.course-nav a:hover {
+  background: var(--cream-white);
+  color: var(--dark-brown);
+}
+
+.course-nav a.active {
+  background: var(--warm-orange);
+  color: var(--cream-white);
+}
+
+/* Coming Soon Message */
+.coming-soon-message {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--cream-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.coming-soon-message p {
+  color: var(--medium-brown);
+  font-size: 1.1rem;
+}
+
+.coming-soon-message a {
+  color: var(--warm-orange);
+  font-weight: 600;
+}
+
+.coming-soon-message a:hover {
+  color: var(--orange-darker);
+  text-decoration: underline;
+}
+
 /*
 HyBit Educational Content © 2026 Cynthia Teeters.
 HyBit character concept, teaching methodology, and all written content are proprietary.
