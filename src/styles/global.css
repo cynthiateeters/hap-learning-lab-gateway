@@ -1145,6 +1145,13 @@ h4 {
   margin-bottom: 2rem;
 }
 
+.section-intro {
+  text-align: center;
+  max-width: var(--readable-width-narrow);
+  margin: -1rem auto 2rem;
+  color: var(--medium-brown);
+}
+
 .station-card-link {
   text-decoration: none;
   color: inherit;

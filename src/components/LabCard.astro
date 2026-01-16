@@ -1,9 +1,9 @@
 ---
 /**
- * LabCard.astro - Card component for linking to HAP Learning Labs and Projects
+ * LabCard.astro - Card component for linking to HAP Learning Labs, Projects, Podcasts, and Videos
  *
- * Displays a card with lab/project information, status badge, and metadata.
- * Supports both Learning Labs (with stations) and Practice Projects.
+ * Displays a card with content information, status badge, and metadata.
+ * Supports Learning Labs (with stations), Practice Projects, Podcasts, and Videos.
  */
 
 interface Props {
@@ -14,15 +14,27 @@ interface Props {
   stationCount?: number;
   difficulty?: 'Beginner' | 'Intermediate' | 'Advanced';
   status?: 'live' | 'coming-soon';
-  cardType?: 'lab' | 'project';
+  cardType?: 'lab' | 'project' | 'podcast' | 'video';
+  duration?: string;
+  showName?: string;
 }
 
-const { icon, title, description, url, stationCount = 6, difficulty = 'Beginner', status = 'live', cardType = 'lab' } = Astro.props;
+const { icon, title, description, url, stationCount = 6, difficulty, status = 'live', cardType = 'lab', duration, showName } = Astro.props;
 
 const isLive = status === 'live' && url;
 const isProject = cardType === 'project';
-const ctaText = isProject ? '→ View Project' : '→ Visit Lab';
-const typeLabel = isProject ? 'Practice Project' : `${stationCount} stations`;
+const isPodcast = cardType === 'podcast';
+const isVideo = cardType === 'video';
+
+const ctaText = isProject ? '→ View Project'
+              : isPodcast ? '→ Listen on Spotify'
+              : isVideo ? '→ Watch on YouTube'
+              : '→ Visit Lab';
+
+const typeLabel = isProject ? 'Practice Project'
+                : isPodcast ? (showName || 'Podcast')
+                : isVideo ? (duration || 'Video')
+                : `${stationCount} stations`;
 ---
 
 {
@@ -33,11 +45,14 @@ const typeLabel = isProject ? 'Practice Project' : `${stationCount} stations`;
           <span class='insight-icon'>{icon}</span> {title}
         </h3>
         {isProject && <span class='lab-badge lab-badge-project'>Project</span>}
+        {isPodcast && <span class='lab-badge lab-badge-podcast'>Podcast</span>}
+        {isVideo && <span class='lab-badge lab-badge-video'>Video</span>}
       </div>
       <p class='lab-description'>{description}</p>
       <div class='lab-meta'>
         <span class='lab-meta-item'>{typeLabel}</span>
-        <span class='lab-meta-item'>{difficulty}</span>
+        {isPodcast && duration && <span class='lab-meta-item'>{duration}</span>}
+        {difficulty && <span class='lab-meta-item'>{difficulty}</span>}
       </div>
       <a href={url} class='lab-cta-link'>
         {ctaText}
@@ -88,11 +103,18 @@ const typeLabel = isProject ? 'Practice Project' : `${stationCount} stations`;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     white-space: nowrap;
-    opacity: 0.9;
   }
 
   .lab-badge-project {
     background: hsl(168, 34%, 30%);
+  }
+
+  .lab-badge-podcast {
+    background: hsl(141, 73%, 24%);
+  }
+
+  .lab-badge-video {
+    background: hsl(0, 70%, 38%);
   }
 
   .lab-description {
