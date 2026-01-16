@@ -29,6 +29,8 @@ interface Props {
   introImage?: string;
   introImageAlt?: string;
   footerReminder?: string;
+  showCourseNav?: boolean;
+  currentCourse?: 'javascript' | 'webdev2';
 }
 
 const {
@@ -43,7 +45,9 @@ const {
   showIntroImage = false,
   introImage,
   introImageAlt,
-  footerReminder
+  footerReminder,
+  showCourseNav = false,
+  currentCourse,
 } = Astro.props;
 ---
 
@@ -88,6 +92,14 @@ const {
   <body>
     <!-- Accessibility skip link -->
     <a href='#main-content' class='skip-link'>Skip to main content</a>
+
+    {showCourseNav && (
+      <nav class="course-nav" aria-label="Course navigation">
+        <a href="/" class:list={[{ active: !currentCourse }]}>All Labs</a>
+        <a href="/javascript" class:list={[{ active: currentCourse === 'javascript' }]}>JavaScript</a>
+        <a href="/webdev2" class:list={[{ active: currentCourse === 'webdev2' }]}>Web Dev 2</a>
+      </nav>
+    )}
 
     <Header
       title={headerTitle}

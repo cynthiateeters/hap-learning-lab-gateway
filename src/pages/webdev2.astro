@@ -1,0 +1,81 @@
+---
+/**
+ * Web Dev 2 - Course-specific page
+ *
+ * Shows only Web Dev 2 labs, projects, and media.
+ * Currently a placeholder for Fall 2026.
+ */
+
+import GatewayLayout from '../layouts/GatewayLayout.astro';
+import LabCard from '../components/LabCard.astro';
+import { courses, getLabsByCourse, getMediaByCourse } from '../data/content.js';
+
+const course = courses.webdev2;
+const labs = getLabsByCourse('webdev2');
+const media = getMediaByCourse('webdev2');
+---
+
+<!--
+HAP Educational Content © 2026 Cynthia Teeters. All rights reserved.
+HyBit A. ProtoBot (HAP) character and the apprentice learning methodology are proprietary educational innovations.
+-->
+
+<GatewayLayout
+    title={course.headerTitle}
+    description={`Explore HAP's ${course.name} Learning Labs and projects.`}
+    headerTitle={course.headerTitle}
+    headerSubtitle={course.headerSubtitle}
+    avatarImage="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/v1759495998/hap-waving_dgzacg.jpg"
+    avatarAlt="HAP waving hello"
+    introContent={course.intro}
+    showIntroImage={true}
+    introImage="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_240,c_limit/v1759497938/HAP-learner_dvehmt.jpg"
+    introImageAlt="HAP ready to learn"
+    footerReminder="New adventures coming soon!"
+    showCourseNav={true}
+    currentCourse="webdev2"
+>
+
+    <!-- ============================================================
+         Learning Labs (or Coming Soon message)
+         ============================================================ -->
+    <div class="content-container">
+        <section class="content-section">
+            <h2 class="section-heading-centered">Learning Labs</h2>
+            {labs.length > 0 ? (
+                <nav aria-label="Web Dev 2 learning labs">
+                    <div class="overview-grid">
+                        {labs.map((lab) => (
+                            <LabCard {...lab} />
+                        ))}
+                    </div>
+                </nav>
+            ) : (
+                <div class="coming-soon-message">
+                    <p>Web Dev 2 labs are coming in Fall 2026!</p>
+                    <p class="mt-1">In the meantime, check out the <a href="/javascript">JavaScript Foundations</a> labs to build your skills.</p>
+                </div>
+            )}
+        </section>
+    </div>
+
+    <!-- ============================================================
+         Listen & Watch (Web Dev 2 media only)
+         ============================================================ -->
+    {media.length > 0 && (
+        <div class="content-container">
+            <section class="content-section">
+                <h2 class="section-heading-centered">Listen & Watch</h2>
+                <p class="section-intro">Podcasts and videos for Web Dev 2 learners.</p>
+                <nav aria-label="Web Dev 2 podcasts and videos">
+                    <div class="overview-grid">
+                        {media.map((item) => (
+                            <LabCard {...item} />
+                        ))}
+                    </div>
+                </nav>
+            </section>
+        </div>
+    )}
+
+</GatewayLayout>

@@ -1,0 +1,73 @@
+---
+/**
+ * JavaScript Foundations - Course-specific page
+ *
+ * Shows only JavaScript labs, projects, and media.
+ */
+
+import GatewayLayout from '../layouts/GatewayLayout.astro';
+import LabCard from '../components/LabCard.astro';
+import { courses, getLabsByCourse, getMediaByCourse } from '../data/content.js';
+
+const course = courses.javascript;
+const labs = getLabsByCourse('javascript');
+const media = getMediaByCourse('javascript');
+---
+
+<!--
+HAP Educational Content © 2026 Cynthia Teeters. All rights reserved.
+HyBit A. ProtoBot (HAP) character and the apprentice learning methodology are proprietary educational innovations.
+-->
+
+<GatewayLayout
+    title={course.headerTitle}
+    description={`Explore HAP's ${course.name} Learning Labs and projects.`}
+    headerTitle={course.headerTitle}
+    headerSubtitle={course.headerSubtitle}
+    avatarImage="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/v1759495998/hap-waving_dgzacg.jpg"
+    avatarAlt="HAP waving hello"
+    introContent={course.intro}
+    showIntroImage={true}
+    introImage="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_240,c_limit/v1759497938/HAP-learner_dvehmt.jpg"
+    introImageAlt="HAP ready to learn"
+    footerReminder="Every lab is a new adventure. Pick one and start exploring!"
+    showCourseNav={true}
+    currentCourse="javascript"
+>
+
+    <!-- ============================================================
+         Learning Labs
+         ============================================================ -->
+    <div class="content-container">
+        <section class="content-section">
+            <h2 class="section-heading-centered">Learning Labs</h2>
+            <nav aria-label="JavaScript learning labs">
+                <div class="overview-grid">
+                    {labs.map((lab) => (
+                        <LabCard {...lab} />
+                    ))}
+                </div>
+            </nav>
+        </section>
+    </div>
+
+    <!-- ============================================================
+         Listen & Watch (JavaScript media only)
+         ============================================================ -->
+    {media.length > 0 && (
+        <div class="content-container">
+            <section class="content-section">
+                <h2 class="section-heading-centered">Listen & Watch</h2>
+                <p class="section-intro">Podcasts and videos for JavaScript learners.</p>
+                <nav aria-label="JavaScript podcasts and videos">
+                    <div class="overview-grid">
+                        {media.map((item) => (
+                            <LabCard {...item} />
+                        ))}
+                    </div>
+                </nav>
+            </section>
+        </div>
+    )}
+
+</GatewayLayout>
