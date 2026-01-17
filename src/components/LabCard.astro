@@ -7,6 +7,8 @@
  */
 
 interface Props {
+  slug?: string;
+  order?: number;
   icon: string;
   title: string;
   description: string;
@@ -19,7 +21,7 @@ interface Props {
   showName?: string;
 }
 
-const { icon, title, description, url, stationCount = 6, difficulty, status = 'live', cardType = 'lab', duration, showName } = Astro.props;
+const { slug, icon, title, description, url, stationCount = 6, difficulty, status = 'live', cardType = 'lab', duration, showName } = Astro.props;
 
 const isLive = status === 'live' && url;
 const isProject = cardType === 'project';
@@ -39,7 +41,7 @@ const typeLabel = isProject ? 'Practice Project'
 
 {
   isLive ? (
-    <div class='insight-card lab-card'>
+    <div id={slug} class='insight-card lab-card'>
       <div class='lab-card-header'>
         <h3>
           <span class='insight-icon'>{icon}</span> {title}
@@ -59,7 +61,7 @@ const typeLabel = isProject ? 'Practice Project'
       </a>
     </div>
   ) : (
-    <div class='insight-card lab-card lab-card-coming-soon'>
+    <div id={slug} class='insight-card lab-card lab-card-coming-soon'>
       <div class='lab-card-header'>
         <h3>
           <span class='insight-icon'>{icon}</span> {title}
@@ -159,5 +161,25 @@ const typeLabel = isProject ? 'Practice Project'
   .lab-cta-link:hover {
     text-decoration: underline;
     color: hsl(32, 76%, 27%);
+  }
+
+  /* Anchor link support - ensure card isn't hidden under sticky headers */
+  .lab-card[id] {
+    scroll-margin-top: 6rem;
+  }
+
+  /* Highlight effect when navigated to via anchor link */
+  .lab-card:target {
+    animation: highlight-pulse 2s ease-out;
+    box-shadow: 0 0 0 3px hsl(32, 76%, 37%);
+  }
+
+  @keyframes highlight-pulse {
+    0% {
+      box-shadow: 0 0 0 6px hsl(35, 83%, 74%);
+    }
+    100% {
+      box-shadow: 0 0 0 3px hsl(32, 76%, 37%);
+    }
   }
 </style>

@@ -32,8 +32,12 @@ export const courses = {
 };
 
 // All labs and projects with course assignments
+// - order: Controls display sequence within course (lower numbers first)
+// - slug: URL-safe identifier for anchor links (e.g., #computational-thinking)
 export const labs = [
   {
+    slug: 'computational-thinking',
+    order: 1,
     icon: '🧠',
     title: 'Computational Thinking',
     description:
@@ -46,6 +50,8 @@ export const labs = [
     course: 'javascript',
   },
   {
+    slug: 'magic-quotes',
+    order: 2,
     icon: '✨',
     title: 'Magic Quotes',
     description:
@@ -57,6 +63,8 @@ export const labs = [
     course: 'javascript',
   },
   {
+    slug: 'javascript-basics',
+    order: 3,
     icon: '📜',
     title: 'JavaScript Basics',
     description:
@@ -71,9 +79,13 @@ export const labs = [
 ];
 
 // All media (podcasts and videos) with course assignments and dates
-// Sorted by dateAdded descending (newest first) when retrieved
+// - order: Controls display sequence within course (lower numbers first)
+// - slug: URL-safe identifier for anchor links (e.g., #podcast-computational-thinking)
+// - dateAdded: Used for "newest first" sorting in combined views
 export const media = [
   {
+    slug: 'podcast-computational-thinking',
+    order: 1,
     icon: '🎧',
     title: 'Computational Thinking',
     description:
@@ -87,6 +99,8 @@ export const media = [
     dateAdded: '2026-01-16',
   },
   {
+    slug: 'video-rubber-ducky',
+    order: 2,
     icon: '🦆',
     title: 'HAP Rubber Ducky Story',
     description:
@@ -98,6 +112,8 @@ export const media = [
     dateAdded: '2026-01-16',
   },
   {
+    slug: 'video-javascript-intro',
+    order: 3,
     icon: '📜',
     title: 'HAP Invites You to JavaScript',
     description:
@@ -114,19 +130,21 @@ export const media = [
 // Helper functions for filtering and sorting
 
 /**
- * Get all labs/projects for a specific course
+ * Get all labs/projects for a specific course, sorted by order
  */
 export function getLabsByCourse(courseSlug) {
-  return labs.filter((lab) => lab.course === courseSlug);
+  return labs
+    .filter((lab) => lab.course === courseSlug)
+    .sort((a, b) => a.order - b.order);
 }
 
 /**
- * Get all media for a specific course, sorted by dateAdded (newest first)
+ * Get all media for a specific course, sorted by order
  */
 export function getMediaByCourse(courseSlug) {
   return media
     .filter((item) => item.course === courseSlug)
-    .sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
+    .sort((a, b) => a.order - b.order);
 }
 
 /**
