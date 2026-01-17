@@ -85,7 +85,7 @@ export const labs = [
 export const media = [
   {
     slug: 'podcast-computational-thinking',
-    order: 1,
+    order: 2,
     icon: '🎧',
     title: 'Computational Thinking',
     description:
@@ -100,7 +100,7 @@ export const media = [
   },
   {
     slug: 'video-rubber-ducky',
-    order: 2,
+    order: 3,
     icon: '🦆',
     title: 'HAP Rubber Ducky Story',
     description:
@@ -113,7 +113,7 @@ export const media = [
   },
   {
     slug: 'video-javascript-intro',
-    order: 3,
+    order: 1,
     icon: '📜',
     title: 'HAP Invites You to JavaScript',
     description:
@@ -148,10 +148,10 @@ export function getMediaByCourse(courseSlug) {
 }
 
 /**
- * Get all media sorted by dateAdded (newest first)
+ * Get all media sorted by order
  */
 export function getAllMediaSorted() {
-  return [...media].sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
+  return [...media].sort((a, b) => a.order - b.order);
 }
 
 /**
