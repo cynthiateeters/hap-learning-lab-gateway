@@ -76,6 +76,20 @@ export const labs = [
     cardType: 'lab',
     course: 'javascript',
   },
+  {
+    slug: 'javascript-control-flow',
+    order: 4,
+    icon: '🔀',
+    title: 'JavaScript Control Flow',
+    description:
+      "Ready to make decisions in code? Join me as I learn truthy/falsy values, logical operators, conditionals, functions, and loops—all while extending our Robot ID Card with smarter, more dynamic behavior.",
+    url: 'https://hap-js-control-flow.netlify.app/',
+    stationCount: 6,
+    difficulty: 'Beginner',
+    status: 'live',
+    cardType: 'lab',
+    course: 'javascript',
+  },
   // Web Dev 2 labs will be added here in Fall
 ];
 
