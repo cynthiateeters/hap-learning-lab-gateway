@@ -8,10 +8,10 @@
 // Course definitions with metadata and HAP introductions
 export const courses = {
   javascript: {
-    name: 'JavaScript Foundations',
-    slug: 'javascript',
+    name: "JavaScript Foundations",
+    slug: "javascript",
     headerTitle: "HAP's JavaScript Labs",
-    headerSubtitle: 'Building your coding foundation',
+    headerSubtitle: "Building your coding foundation",
     intro: `
       <p><strong>Welcome to JavaScript Foundations!</strong> I'm HAP, and this is where I learned to turn computational thinking into real code.</p>
       <p class="mt-1">These labs and projects will take you from understanding how programs think to writing your own JavaScript. We'll start with the basics and build up to creating interactive web applications.</p>
@@ -19,10 +19,10 @@ export const courses = {
     `,
   },
   webdev2: {
-    name: 'Web Dev 2',
-    slug: 'webdev2',
+    name: "Web Dev 2",
+    slug: "webdev2",
     headerTitle: "HAP's Web Dev 2 Labs",
-    headerSubtitle: 'Advanced web development techniques',
+    headerSubtitle: "Advanced web development techniques",
     intro: `
       <p><strong>Ready for Web Dev 2?</strong> I've been learning about APIs, advanced CSS, and deployment strategies—and I can't wait to share what I've discovered.</p>
       <p class="mt-1">These labs build on your JavaScript foundations and take you into the world of professional web development. We'll work with real APIs, responsive layouts, and production deployment.</p>
@@ -36,59 +36,73 @@ export const courses = {
 // - slug: URL-safe identifier for anchor links (e.g., #computational-thinking)
 export const labs = [
   {
-    slug: 'computational-thinking',
+    slug: "computational-thinking",
     order: 1,
-    icon: '🧠',
-    title: 'Computational Thinking',
+    icon: "🧠",
+    title: "Computational Thinking",
     description:
       "Learn to think before you code. I'll take you through the Secret Number Game, where I discovered that describing behavior, writing pseudocode, and tracing logic are more important than memorizing syntax.",
-    url: 'https://hap-computational-thinking.netlify.app/',
+    url: "https://hap-computational-thinking.netlify.app/",
     stationCount: 6,
-    difficulty: 'Beginner',
-    status: 'live',
-    cardType: 'lab',
-    course: 'javascript',
+    difficulty: "Beginner",
+    status: "live",
+    cardType: "lab",
+    course: "javascript",
   },
   {
-    slug: 'magic-quotes',
+    slug: "magic-quotes",
     order: 2,
-    icon: '✨',
-    title: 'Magic Quotes',
+    icon: "✨",
+    title: "Magic Quotes",
     description:
-      'A collaborative web application for displaying random quotes—and my first real contribution project! Students learn Git workflows, structured data, and modern web development by adding their own quotes to a live site.',
-    url: 'https://magic-quotes.netlify.app',
-    difficulty: 'Beginner',
-    status: 'live',
-    cardType: 'project',
-    course: 'javascript',
+      "A collaborative web application for displaying random quotes—and my first real contribution project! Students learn Git workflows, structured data, and modern web development by adding their own quotes to a live site.",
+    url: "https://magic-quotes.netlify.app",
+    difficulty: "Beginner",
+    status: "live",
+    cardType: "project",
+    course: "javascript",
   },
   {
-    slug: 'javascript-foundations',
+    slug: "javascript-foundations",
     order: 3,
-    icon: '📜',
-    title: 'JavaScript Foundations',
+    icon: "📜",
+    title: "JavaScript Foundations",
     description:
       "Once you can think computationally, it's time to write real code! Follow me through 6 stations where I learned JavaScript fundamentals—variables, data types, operators, and more—while building a Robot ID Card that grows with each concept.",
-    url: 'https://hap-js-foundations.netlify.app/',
+    url: "https://hap-js-foundations.netlify.app/",
     stationCount: 6,
-    difficulty: 'Beginner',
-    status: 'live',
-    cardType: 'lab',
-    course: 'javascript',
+    difficulty: "Beginner",
+    status: "live",
+    cardType: "lab",
+    course: "javascript",
   },
   {
-    slug: 'javascript-control-flow',
+    slug: "javascript-control-flow",
     order: 4,
-    icon: '🔀',
-    title: 'JavaScript Control Flow',
+    icon: "🔀",
+    title: "JavaScript Control Flow",
     description:
       "Ready to make decisions in code? Join me as I learn truthy/falsy values, logical operators, conditionals, functions, and loops—all while extending our Robot ID Card with smarter, more dynamic behavior.",
-    url: 'https://hap-js-control-flow.netlify.app/',
+    url: "https://hap-js-control-flow.netlify.app/",
     stationCount: 6,
-    difficulty: 'Beginner',
-    status: 'live',
-    cardType: 'lab',
-    course: 'javascript',
+    difficulty: "Beginner",
+    status: "live",
+    cardType: "lab",
+    course: "javascript",
+  },
+  {
+    slug: "living-in-the-terminal",
+    order: 5,
+    icon: "💻",
+    title: "Living in the Terminal",
+    description:
+      "The terminal used to scare me. I watched my AI agent run commands and had no idea what was happening. Now I can navigate files, deploy a live site, shape how my agent behaves, and understand MCP servers — all from that blinking cursor.",
+    url: "https://hap-and-terminal.netlify.app/",
+    stationCount: 6,
+    difficulty: "Beginner",
+    status: "live",
+    cardType: "lab",
+    course: "javascript",
   },
   // Web Dev 2 labs will be added here in Fall
 ];
@@ -99,45 +113,45 @@ export const labs = [
 // - dateAdded: Used for "newest first" sorting in combined views
 export const media = [
   {
-    slug: 'podcast-computational-thinking',
+    slug: "podcast-computational-thinking",
     order: 2,
-    icon: '🎧',
-    title: 'Computational Thinking',
+    icon: "🎧",
+    title: "Computational Thinking",
     description:
       "HAP's Learning Lab teaches computational thinking as a foundational mindset. Learn the four pillars—decomposition, pattern recognition, abstraction, and algorithmic thinking—using the Secret Number Game.",
-    url: 'https://open.spotify.com/episode/0XHODbHBn04SVjfDN0UzEw?si=y1XmZ6RASk2kSwXQJgQgjQ',
-    duration: '12 min',
-    showName: 'Deep Dive: The HAP Blog Edition',
-    cardType: 'podcast',
-    status: 'live',
-    course: 'javascript',
-    dateAdded: '2026-01-16',
+    url: "https://open.spotify.com/episode/0XHODbHBn04SVjfDN0UzEw?si=y1XmZ6RASk2kSwXQJgQgjQ",
+    duration: "12 min",
+    showName: "Deep Dive: The HAP Blog Edition",
+    cardType: "podcast",
+    status: "live",
+    course: "javascript",
+    dateAdded: "2026-01-16",
   },
   {
-    slug: 'video-rubber-ducky',
+    slug: "video-rubber-ducky",
     order: 3,
-    icon: '🦆',
-    title: 'HAP\'s Rubber Ducky Story',
+    icon: "🦆",
+    title: "HAP's Rubber Ducky Story",
     description:
-      'Discover the power of rubber duck debugging! HAP shares how talking through problems out loud—even to a rubber duck—helps untangle complex coding challenges.',
-    url: 'https://www.youtube.com/watch?v=Re4suES6sGA',
-    cardType: 'video',
-    status: 'live',
-    course: 'javascript',
-    dateAdded: '2026-01-16',
+      "Discover the power of rubber duck debugging! HAP shares how talking through problems out loud—even to a rubber duck—helps untangle complex coding challenges.",
+    url: "https://www.youtube.com/watch?v=Re4suES6sGA",
+    cardType: "video",
+    status: "live",
+    course: "javascript",
+    dateAdded: "2026-01-16",
   },
   {
-    slug: 'video-javascript-intro',
+    slug: "video-javascript-intro",
     order: 1,
-    icon: '📜',
-    title: 'HAP Invites You to JavaScript',
+    icon: "📜",
+    title: "HAP Invites You to JavaScript",
     description:
-      'Join HAP on the beginning of a JavaScript journey. This introduction sets the stage for learning programming fundamentals with curiosity and patience.',
-    url: 'https://www.youtube.com/watch?v=cqyNnAmxTPg',
-    cardType: 'video',
-    status: 'live',
-    course: 'javascript',
-    dateAdded: '2026-01-16',
+      "Join HAP on the beginning of a JavaScript journey. This introduction sets the stage for learning programming fundamentals with curiosity and patience.",
+    url: "https://www.youtube.com/watch?v=cqyNnAmxTPg",
+    cardType: "video",
+    status: "live",
+    course: "javascript",
+    dateAdded: "2026-01-16",
   },
   // Web Dev 2 media will be added here in Fall
 ];
@@ -148,18 +162,14 @@ export const media = [
  * Get all labs/projects for a specific course, sorted by order
  */
 export function getLabsByCourse(courseSlug) {
-  return labs
-    .filter((lab) => lab.course === courseSlug)
-    .sort((a, b) => a.order - b.order);
+  return labs.filter((lab) => lab.course === courseSlug).sort((a, b) => a.order - b.order);
 }
 
 /**
  * Get all media for a specific course, sorted by order
  */
 export function getMediaByCourse(courseSlug) {
-  return media
-    .filter((item) => item.course === courseSlug)
-    .sort((a, b) => a.order - b.order);
+  return media.filter((item) => item.course === courseSlug).sort((a, b) => a.order - b.order);
 }
 
 /**
