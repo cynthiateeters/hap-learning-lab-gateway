@@ -92,7 +92,7 @@ export const labs = [
   },
   {
     slug: "living-in-the-terminal",
-    order: 5,
+    order: 0,
     icon: "💻",
     title: "Living in the Terminal",
     description:
