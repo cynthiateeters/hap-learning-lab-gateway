@@ -18,6 +18,16 @@ export const courses = {
       <p class="mt-1">Remember: syntax comes easy once you understand the logic. Let's code!</p>
     `,
   },
+  robotcard: {
+    name: "HAP's Robot ID Card",
+    slug: "robotcard",
+    headerTitle: "HAP's Robot ID Card Apps",
+    headerSubtitle: "Interactive demos built across the labs",
+    intro: `
+      <p><strong>These are the apps I built!</strong> As I worked through the JavaScript and DOM labs, I created Robot ID Card apps that grew more interactive at each step.</p>
+      <p class="mt-1">Each project below is a standalone demo showing the final result of what I learned. You can explore the code, remix it, or use it as a reference while working through the labs.</p>
+    `,
+  },
   webdev2: {
     name: "Web Dev 2",
     slug: "webdev2",
@@ -48,6 +58,7 @@ export const labs = [
     status: "live",
     cardType: "lab",
     course: "javascript",
+    dateAdded: "2026-01-01",
   },
   {
     slug: "magic-quotes",
@@ -61,6 +72,7 @@ export const labs = [
     status: "live",
     cardType: "project",
     course: "javascript",
+    dateAdded: "2026-01-01",
   },
   {
     slug: "javascript-foundations",
@@ -75,6 +87,7 @@ export const labs = [
     status: "live",
     cardType: "lab",
     course: "javascript",
+    dateAdded: "2026-01-01",
   },
   {
     slug: "javascript-control-flow",
@@ -89,10 +102,11 @@ export const labs = [
     status: "live",
     cardType: "lab",
     course: "javascript",
+    dateAdded: "2026-01-01",
   },
   {
     slug: "living-in-the-terminal",
-    order: 0,
+    order: 5,
     icon: "💻",
     title: "Living in the Terminal",
     description:
@@ -103,6 +117,66 @@ export const labs = [
     status: "live",
     cardType: "lab",
     course: "javascript",
+    dateAdded: "2026-01-01",
+  },
+  {
+    slug: "the-dom",
+    order: 6,
+    icon: "🌳",
+    title: "The DOM",
+    description:
+      "I thought my Robot ID Card was finished the moment I saved the HTML file. Then Prof. Teeters showed me the browser builds a living tree called the DOM — and JavaScript can reshape it without touching the original file. Six stations on finding, reading, changing, and building DOM elements.",
+    url: "https://hap-dom.netlify.app/",
+    stationCount: 6,
+    difficulty: "Beginner",
+    status: "live",
+    cardType: "lab",
+    course: "javascript",
+    dateAdded: "2026-03-26",
+  },
+  {
+    slug: "the-living-page",
+    order: 7,
+    icon: "⚡",
+    title: "The Living Page",
+    description:
+      "My robot card looked amazing after the DOM lab — but when I clicked on it, nothing happened. Events are what bring a page to life. Six stations covering addEventListener, callbacks, view switching, forms, delegation, and AI code review.",
+    url: "https://hap-events.netlify.app/",
+    stationCount: 6,
+    difficulty: "Beginner",
+    status: "live",
+    cardType: "lab",
+    course: "javascript",
+    dateAdded: "2026-04-01",
+  },
+  // Robot ID Card projects
+  {
+    slug: "robot-id-card-starter",
+    order: 1,
+    icon: "🤖",
+    title: "Ready Build Starter",
+    description:
+      "A professional JavaScript tooling harness — clone it and start building. Vite dev server, ESLint, Prettier, Husky pre-commit hooks, Vitest, and GitHub Actions CI are all pre-configured.",
+    url: "https://hap-7000.netlify.app/",
+    difficulty: "Beginner",
+    status: "live",
+    cardType: "project",
+    course: "robotcard",
+    dateAdded: "2026-01-01",
+  },
+  {
+    slug: "robot-id-card-events-demo",
+    order: 2,
+    icon: "🎯",
+    title: "Robot ID Card — Events Demo",
+    description:
+      "The finished app from The Living Page lab. A fully interactive Robot ID Card built with addEventListener, callbacks, event delegation, view switching, forms, and safe DOM construction — all in vanilla JS.",
+    url: "https://hap-7000-events.netlify.app/",
+    difficulty: "Beginner",
+    status: "live",
+    cardType: "project",
+    course: "robotcard",
+    dateAdded: "2026-01-01",
   },
   // Web Dev 2 labs will be added here in Fall
 ];
